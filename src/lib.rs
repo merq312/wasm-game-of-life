@@ -1,4 +1,5 @@
 mod utils;
+extern crate js_sys;
 
 use std::fmt;
 use wasm_bindgen::prelude::*;
@@ -137,6 +138,26 @@ impl Universe {
     pub fn toggle_cell(&mut self, row: u32, column: u32) {
         let idx = self.get_index(row, column);
         self.cells[idx].toggle();
+    }
+
+    pub fn randomize(&mut self) {
+        let mut next = self.cells.clone();
+
+        for row in 0..self.height {
+            for col in 0..self.width {
+                let idx = self.get_index(row, col);
+
+                let next_cell = if js_sys::Math::random() < 0.5 {
+                    Cell::Alive
+                } else {
+                    Cell::Dead
+                };
+
+                next[idx] = next_cell;
+            }
+        }
+
+        self.cells = next;
     }
 }
 

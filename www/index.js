@@ -81,8 +81,10 @@ const renderLoop = () => {
 const isPaused = () => animationId === null
 
 const playPauseButton = document.getElementById('play-pause')
+const randomizeButton = document.getElementById('randomize')
 
 const play = () => {
+  randomizeButton.textContent = '🔄'
   playPauseButton.textContent = '⏸'
   renderLoop()
 }
@@ -99,6 +101,13 @@ playPauseButton.addEventListener('click', (event) => {
   } else {
     pause()
   }
+})
+
+randomizeButton.addEventListener('click', (event) => {
+  universe.randomize()
+
+  drawGrid()
+  drawCells()
 })
 
 canvas.addEventListener('click', (event) => {
