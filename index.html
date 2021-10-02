@@ -15,6 +15,23 @@
         align-items: center;
         justify-content: center;
       }
+
+      .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      button {
+        border: none;
+        margin: 2px;
+        padding: 8px;
+        font-size: 24px;
+      }
+
+      button:hover {
+        background-color: #777;
+      }
     </style>
   </head>
   <body>
@@ -22,7 +39,10 @@
       >This page contains webassembly and javascript content, please enable
       javascript in your browser.</noscript
     >
-    <button id="play-pause"></button>
+    <div class="buttons">
+      <button id="play-pause"></button>
+      <button id="randomize"></button>
+    </div>
     <canvas id="game-of-life-canvas"></canvas>
     <script src="./bootstrap.js"></script>
   </body>
