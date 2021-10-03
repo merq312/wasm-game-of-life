@@ -159,6 +159,31 @@ impl Universe {
 
         self.cells = next;
     }
+
+    pub fn clear_all(&mut self) {
+        self.cells = (0..self.width * self.height).map(|_i| Cell::Dead).collect();
+    }
+
+    fn wrap_coordinates(&self, row: u32, column: u32) -> (u32, u32) {
+        let delta_row = row + self.height;
+        let delta_col = column + self.width;
+
+        (delta_row % self.height, delta_col % self.width)
+    }
+
+    pub fn insert_glider(&mut self, row: u32, col: u32) {
+        for (delta_row, delta_col) in [
+            (row, col),
+            (row + 1, col),
+            (row, col + 1),
+            (row + 1, col - 1),
+            (row - 1, col - 1),
+        ] {
+            let (row_wrapped, col_wrapped) = self.wrap_coordinates(delta_row, delta_col);
+            let idx = self.get_index(row_wrapped, col_wrapped);
+            self.cells[idx] = Cell::Alive;
+        }
+    }
 }
 
 impl Universe {
