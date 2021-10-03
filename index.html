@@ -3,23 +3,35 @@
   <head>
     <meta charset="utf-8" />
     <title>Hello wasm-pack!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+          'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+          'Helvetica Neue', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
         position: absolute;
+        background-color: black;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
+        width: 99%;
+        height: 99%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        color: white;
       }
 
       .buttons {
         display: flex;
         flex-direction: row;
         justify-content: center;
+        margin-bottom: 6px;
       }
 
       button {
@@ -27,10 +39,15 @@
         margin: 2px;
         padding: 8px;
         font-size: 24px;
+        background-color: #222;
       }
 
       button:hover {
         background-color: #777;
+      }
+
+      h1 {
+        margin: 6px;
       }
     </style>
   </head>
@@ -39,9 +56,12 @@
       >This page contains webassembly and javascript content, please enable
       javascript in your browser.</noscript
     >
+    <h1>Conway's Game of Life running on wasm 🕸️, written in Rust 🦀</h1>
+    <p>Click to toggle a cell. Ctrl-click to insert a glider.</p>
     <div class="buttons">
       <button id="play-pause"></button>
       <button id="randomize"></button>
+      <button id="clear"></button>
     </div>
     <canvas id="game-of-life-canvas"></canvas>
     <script src="./bootstrap.js"></script>
